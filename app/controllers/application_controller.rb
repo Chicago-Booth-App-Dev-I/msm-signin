@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action(:load_current_user)
   
-  # Uncomment this if you want to force users to sign in before any other actions
-  before_action(:force_user_sign_in)
-  
+  before_action(:force_user_sign_in) # Uncomment this if you want to force users to sign in before any other actions
+  skip_before_action(:force_user_sign_in, {:only => [:homepage]})
+
   def load_current_user
     the_id = session[:user_id]
     @current_user = User.where({ :id => the_id }).first
@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     if @current_user == nil
       redirect_to("/user_sign_in", { :notice => "You have to sign in first." })
     end
+  end
+
+  def homepage
+    render({:template => "/homepage/display.html.erb"})
   end
 
 
