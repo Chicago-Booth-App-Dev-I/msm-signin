@@ -19,7 +19,9 @@
     <div> <a href = "/user_sign_up"> Sign up </a> </div>
     <div>
       <% if @current_user != nil %>
+        <div> <a href = "/bookmarks"> My bookmarks </a> </div>
         <div> <a href = "/user_sign_out"> Sign out </a> </div>
+        <div> <a href = "/movies"> Movies </a> </div>
       <% end %>
     </div>
     <div style="color:green" > <%= notice %> </div>
