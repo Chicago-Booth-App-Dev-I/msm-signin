@@ -11,9 +11,16 @@ class MoviesController < ApplicationController
     the_id = params.fetch("path_id")
 
     matching_movies = Movie.where({ :id => the_id })
-
     @the_movie = matching_movies.at(0)
+    
+    # Code to check for bookmarking
+    @list_of_bookmarks = Bookmark.where({:user_id => @current_user.id})
+    @included_movie_ids = Array.new
 
+    @list_of_bookmarks.each do |a_bookmark|
+    @included_movie_ids.push(a_bookmark.movie_id)
+    end
+    
     render({ :template => "movies/show.html.erb" })
   end
 

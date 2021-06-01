@@ -20,11 +20,27 @@
 
     <div>
       <% if @current_user.id != nil %>
-      <h3> hi </h3>
+         <% if @the_movie.id.in?(@included_movie_ids) %>
+          <a href = "/delete_bookmark/<%= @the_movie.id %>"> Un-bookmark </a>
+         <% else %>
+            <div>
+              <form action="/insert_bookmark" method="post">
+
+                <div>
+                  
+                  <label for="movie_id_box">
+                  </label>
+
+                  <input type="hidden" id="movie_id_box" name="query_movie_id">
+
+                <button>
+                  Bookmark this movie!
+                </button>
+                  </form>
+                </div> 
+              </div>
+         <% end %>
       <% end %>
-
-
-
     </div>
 
     <dl>

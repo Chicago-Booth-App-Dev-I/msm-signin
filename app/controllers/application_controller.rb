@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_action(:load_current_user)
   
   before_action(:force_user_sign_in) # Uncomment this if you want to force users to sign in before any other actions
-  skip_before_action(:force_user_sign_in, {:only => [:homepage]})
+  #skip_before_action(:force_user_sign_in, {:only => [:homepage]})
 
   def load_current_user
     the_id = session[:user_id]
